@@ -5,7 +5,9 @@ VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Libreria", "Libreria\Libreria.csproj", "{7D73BE25-B6AF-46CB-9C60-85136A422A59}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Libreria.MSTests", "Libreria.MSTests\Libreria.MSTests.csproj", "{DAD6E0A1-778E-45EE-B715-B073209E2C3F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Libreria.MSTests", "Libreria.MSTests\Libreria.MSTests.csproj", "{DAD6E0A1-778E-45EE-B715-B073209E2C3F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Libreria.NUnitTests", "Libreria.NUnitTests\Libreria.NUnitTests.csproj", "{983B02AF-D0EE-464E-872C-F93D794A69DD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{DAD6E0A1-778E-45EE-B715-B073209E2C3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DAD6E0A1-778E-45EE-B715-B073209E2C3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DAD6E0A1-778E-45EE-B715-B073209E2C3F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{983B02AF-D0EE-464E-872C-F93D794A69DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{983B02AF-D0EE-464E-872C-F93D794A69DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{983B02AF-D0EE-464E-872C-F93D794A69DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{983B02AF-D0EE-464E-872C-F93D794A69DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
