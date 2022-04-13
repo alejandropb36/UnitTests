@@ -19,5 +19,35 @@ namespace Libreria
             // Assert
             Assert.AreEqual(119, resultado);
         }
+
+        [Test]
+        public void IsValorPar_InputNumeroImpar_GetValorFalse()
+        {
+            // Arrange
+            Operacion operacion = new();
+            int numero = 5;
+
+            // Act
+            bool resultado = operacion.IsValorPar(numero);
+
+            // Assert
+            Assert.IsFalse(resultado);
+            Assert.That(resultado, Is.EqualTo(false));
+        }
+
+        [Test]
+        public void IsValorPar_InputNumeroPar_GetValorTrue()
+        {
+            // Arrange
+            Operacion operacion = new();
+            int numero = 4;
+
+            // Act
+            bool resultado = operacion.IsValorPar(numero);
+
+            // Assert
+            Assert.IsTrue(resultado);
+            Assert.That(resultado, Is.EqualTo(true));
+        }
     }
 }

@@ -6,5 +6,10 @@
         {
             return a + b;
         }
+
+        public bool  IsValorPar(int number)
+        {
+            return number % 2 == 0;
+        }
     }
 }
