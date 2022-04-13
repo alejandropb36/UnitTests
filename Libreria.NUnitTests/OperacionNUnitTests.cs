@@ -36,11 +36,13 @@ namespace Libreria
         }
 
         [Test]
-        public void IsValorPar_InputNumeroPar_GetValorTrue()
+        [TestCase(6)]
+        [TestCase(8)]
+        [TestCase(222)]
+        public void IsValorPar_InputNumeroPar_GetValorTrue(int numero)
         {
             // Arrange
             Operacion operacion = new();
-            int numero = 4;
 
             // Act
             bool resultado = operacion.IsValorPar(numero);
