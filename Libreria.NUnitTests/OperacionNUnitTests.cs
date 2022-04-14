@@ -21,18 +21,16 @@ namespace Libreria
         }
 
         [Test]
-        public void IsValorPar_InputNumeroImpar_GetValorFalse()
+        [TestCase(7, ExpectedResult = false)]
+        [TestCase(9, ExpectedResult = false)]
+        [TestCase(223, ExpectedResult = false)]
+        public bool IsValorPar_InputNumeroImpar_GetValorFalse(int numero)
         {
             // Arrange
             Operacion operacion = new();
-            int numero = 5;
 
             // Act
-            bool resultado = operacion.IsValorPar(numero);
-
-            // Assert
-            Assert.IsFalse(resultado);
-            Assert.That(resultado, Is.EqualTo(false));
+            return operacion.IsValorPar(numero);
         }
 
         [Test]
