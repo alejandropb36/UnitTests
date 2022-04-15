@@ -49,5 +49,20 @@ namespace Libreria
             Assert.IsTrue(resultado);
             Assert.That(resultado, Is.EqualTo(true));
         }
+
+        [Test]
+        [TestCase(2.2, 1.2)] // 3.4
+        [TestCase(2.23, 1.24)] // 3.47
+        public void SumarDecimal_InputDosNumeros_GetValorCorrecto(double numero1, double numero2)
+        {
+            // Arrange
+            Operacion operacion = new();
+
+            // Act
+            double resultado = operacion.SumarDecimal(numero1, numero2);
+
+            // Assert
+            Assert.AreEqual(3.4, resultado, 0.1);
+        }
     }
 }

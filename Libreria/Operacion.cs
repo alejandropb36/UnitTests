@@ -11,5 +11,10 @@
         {
             return number % 2 == 0;
         }
+
+        public double SumarDecimal(double numero1, double numero2)
+        {
+            return numero1 + numero2;
+        }
     }
 }
