@@ -64,5 +64,19 @@ namespace Libreria
             // Assert
             Assert.AreEqual(3.4, resultado, 0.1);
         }
+
+        [Test]
+        public void GetListaNumeroImpares_InputMinimoMaximoIntervalos_ReturnListaImpares()
+        {
+            // Arrange
+            Operacion op = new();
+            List<int> numerosImparesEsperado = new() { 5, 7, 9 };
+
+            // Act
+            var result = op.GetListaNumeroImpares(5, 10);
+
+            // Asserts
+            Assert.That(result, Is.EqualTo(numerosImparesEsperado));
+        }
     }
 }
