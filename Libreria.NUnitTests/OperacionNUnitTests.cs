@@ -77,6 +77,14 @@ namespace Libreria
 
             // Asserts
             Assert.That(result, Is.EqualTo(numerosImparesEsperado));
+            Assert.AreEqual(numerosImparesEsperado, result);
+            Assert.That(result, Does.Contain(5));
+            Assert.Contains(5, result);
+            Assert.That(result, Is.Not.Empty);
+            Assert.That(result.Count, Is.EqualTo(3));
+            Assert.That(result, Has.No.Member(100));
+            Assert.That(result, Is.Ordered.Ascending);
+            Assert.That(result, Is.Unique);
         }
     }
 }

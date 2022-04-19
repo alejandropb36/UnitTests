@@ -33,5 +33,13 @@ namespace Libreria
         {
             Assert.IsNull(cliente.NombreCliente);
         }
+
+        [Test]
+        public void DescuentoEvaluacion_DefaultCliente_ReturnsDecuentoIntervalo()
+        {
+            int descuento = cliente.Descuento;
+
+            Assert.That(descuento, Is.InRange(4, 24));
+        }
     }
 }
