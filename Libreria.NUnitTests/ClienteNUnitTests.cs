@@ -20,12 +20,15 @@ namespace Libreria
             cliente.CrearNombreCompleto("Alejandro", "Ponce");
 
             // Assert
-            Assert.That(cliente.NombreCliente, Is.EqualTo("Alejandro Ponce"));
-            Assert.AreEqual(cliente.NombreCliente, "Alejandro Ponce");
-            Assert.That(cliente.NombreCliente, Does.Contain("Ponce"));
-            Assert.That(cliente.NombreCliente, Does.Contain("ponce").IgnoreCase);
-            Assert.That(cliente.NombreCliente, Does.StartWith("alejandro").IgnoreCase);
-            Assert.That(cliente.NombreCliente, Does.EndWith("ponce").IgnoreCase);
+            Assert.Multiple(() =>
+            {
+                Assert.That(cliente.NombreCliente, Is.EqualTo("Alejandro Ponce"));
+                Assert.AreEqual(cliente.NombreCliente, "Alejandro Ponce");
+                Assert.That(cliente.NombreCliente, Does.Contain("Ponce"));
+                Assert.That(cliente.NombreCliente, Does.Contain("ponce").IgnoreCase);
+                Assert.That(cliente.NombreCliente, Does.StartWith("alejandro").IgnoreCase);
+                Assert.That(cliente.NombreCliente, Does.EndWith("ponce").IgnoreCase);
+            });
         }
 
         [Test]
@@ -40,6 +43,35 @@ namespace Libreria
             int descuento = cliente.Descuento;
 
             Assert.That(descuento, Is.InRange(4, 24));
+        }
+
+        [Test]
+        public void CrearNombreCompleto_InputNombre_ReturnNotNull()
+        {
+            // Act
+            cliente.CrearNombreCompleto("Vaxi", "");
+
+            Assert.IsNotNull(cliente.NombreCliente);
+            Assert.IsFalse(string.IsNullOrEmpty(cliente.NombreCliente));
+        }
+
+        [Test]
+        public void CrearNombreCompleto_InputNombreEnBlanco_ThrowException()
+        {
+            var exceptionDetalle = Assert.Throws<ArgumentException>(() => cliente.CrearNombreCompleto("", "Ponce"));
+
+            Assert.AreEqual("El nombre esta en blanco", exceptionDetalle.Message);
+
+            Assert.That(() => 
+                cliente.CrearNombreCompleto("", ""),
+                Throws.ArgumentException.With.Message.EqualTo("El nombre esta en blanco")
+            );
+
+            Assert.Throws<ArgumentException>(() => cliente.CrearNombreCompleto("", "Ponce"));
+            Assert.That(() =>
+                cliente.CrearNombreCompleto("", ""),
+                Throws.ArgumentException
+            );
         }
     }
 }

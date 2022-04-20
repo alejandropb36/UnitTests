@@ -7,6 +7,10 @@
 
         public string CrearNombreCompleto(string nombre, string apellido)
         {
+            if (string.IsNullOrEmpty(nombre))
+            {
+                throw new ArgumentException("El nombre esta en blanco");
+            }
             Descuento = 30;
             NombreCliente = $"{nombre} {apellido}";
             return NombreCliente;
