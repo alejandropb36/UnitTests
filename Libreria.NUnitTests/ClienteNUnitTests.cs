@@ -73,5 +73,25 @@ namespace Libreria
                 Throws.ArgumentException
             );
         }
+
+        [Test]
+        public void GetClienteDetalle_CrearClienteConMenos500TotalOrder_ReturnsClienteBasico()
+        {
+            cliente.OrderTotal = 150;
+
+            var result = cliente.GetClienteDetalle();
+
+            Assert.That(result, Is.TypeOf<ClienteBasico>());
+        }
+
+        [Test]
+        public void GetClienteDetalle_CrearClienteConMas500TotalOrder_ReturnsClientePremium()
+        {
+            cliente.OrderTotal = 501;
+
+            var result = cliente.GetClienteDetalle();
+
+            Assert.That(result, Is.TypeOf<ClientePremium>());
+        }
     }
 }
