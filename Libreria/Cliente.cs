@@ -1,10 +1,26 @@
 ﻿namespace Libreria
 {
-    public class Cliente
+    public interface ICliente
+    {
+        string? NombreCliente { get; set; }
+        int Descuento { get; set; }
+        int OrderTotal { get; set; }
+        bool IsPremium { get; set; }
+        string CrearNombreCompleto(string nombre, string apellido);
+        TipoCliente GetClienteDetalle();
+    }
+
+    public class Cliente : ICliente
     {
         public string? NombreCliente { get; set; }
         public int Descuento { get; set; } = 10;
         public int OrderTotal { get; set; }
+        public bool IsPremium { get; set; }
+
+        public Cliente()
+        {
+            IsPremium = false;
+        }
 
         public string CrearNombreCompleto(string nombre, string apellido)
         {
