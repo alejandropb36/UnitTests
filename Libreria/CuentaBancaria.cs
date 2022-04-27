@@ -23,12 +23,12 @@
             if (monto <= _balance)
             {
                 _balance -= monto;
-                _loggerGeneral.Message($"Retiro exitoso por el monto: {monto}, balance restante: {_balance}");
-                return true;
+                _loggerGeneral.LogDatabase($"Retiro exitoso por el monto: {monto}, balance restante: {_balance}");
+                return _loggerGeneral.LogBalanceDespuesRetiro(_balance);
             }
 
-            _loggerGeneral.Message($"Error en el retiro, el monto: {monto} es superior al balance: {_balance}");
-            return false;
+            _loggerGeneral.LogDatabase($"Error en el retiro, el monto: {monto} es superior al balance: {_balance}");
+            return _loggerGeneral.LogBalanceDespuesRetiro(_balance - monto);
         }
 
         public int GetBalance()
