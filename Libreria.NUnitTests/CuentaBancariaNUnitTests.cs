@@ -72,5 +72,17 @@ namespace Libreria
             // Asserts
             Assert.IsFalse(result);
         }
+
+        [Test]
+        public void CuentaBancariaLoggerGeneral_LogMocking_ReturnTrue()
+        {
+            var loggerMocking = new Mock<ILoggerGeneral>();
+            string textoPrueba = "hola mundo";
+            loggerMocking.Setup(l => l.MessageConReturnString(It.IsAny<string>())).Returns<string>(str => str.ToLower());
+
+            var result = loggerMocking.Object.MessageConReturnString("holA MundO");
+
+            Assert.That(result, Is.EqualTo(textoPrueba));
+        }
     }
 }
