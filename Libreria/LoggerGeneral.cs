@@ -6,6 +6,7 @@
         bool LogDatabase(string message);
         bool LogBalanceDespuesRetiro(int balance);
         string MessageConReturnString(string message);
+        bool MessageConOutParametroReturnBoolean(string str, out string outputStr);
     }
 
     public class LoggerGeneral : ILoggerGeneral
@@ -33,6 +34,12 @@
             Console.WriteLine(message);
         }
 
+        public bool MessageConOutParametroReturnBoolean(string str, out string outputStr)
+        {
+            outputStr = "Hola " + str;
+            return true;
+        }
+
         public string MessageConReturnString(string message)
         {
             Console.WriteLine(message);
@@ -47,6 +54,11 @@
         public bool LogDatabase(string message) => true;
 
         public void Message(string message) { }
+
+        public bool MessageConOutParametroReturnBoolean(string str, out string outputStr)
+        {
+            throw new NotImplementedException();
+        }
 
         public string MessageConReturnString(string message)
         {
