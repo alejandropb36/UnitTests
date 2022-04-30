@@ -112,5 +112,17 @@ namespace Libreria
             Assert.IsTrue(result);
             Assert.IsFalse(loggerGeneral.Object.MessageConObjetoReferenciaReturnBoolean(ref clienteNoUsando));
         }
+
+        [Test]
+        public void CuentaBancariaLoggerGeneral_LogMockingPropiedadPrioridadTipo_ReturnsTrue()
+        {
+            var loggerGeneralMock = new Mock<ILoggerGeneral>();
+            loggerGeneralMock.SetupAllProperties();
+            loggerGeneralMock.Setup(l => l.TipoLogger).Returns("warning");
+            loggerGeneralMock.Setup(l => l.PrioridadLogger).Returns(10);
+
+            Assert.That(loggerGeneralMock.Object.PrioridadLogger, Is.EqualTo(10));
+            Assert.That(loggerGeneralMock.Object.TipoLogger, Is.EqualTo("warning"));
+        }
     }
 }
