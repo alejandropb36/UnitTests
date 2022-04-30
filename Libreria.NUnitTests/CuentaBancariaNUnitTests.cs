@@ -98,5 +98,19 @@ namespace Libreria
 
             Assert.IsTrue(result);
         }
+
+        [Test]
+        public void CuentaBancariaLoggerGeneral_LogMockingObjetoReferencia_ReturnsTrue()
+        {
+            var loggerGeneral = new Mock<ILoggerGeneral>();
+            Cliente cliente = new();
+            Cliente clienteNoUsando = new();
+            loggerGeneral.Setup(l => l.MessageConObjetoReferenciaReturnBoolean(ref cliente)).Returns(true);
+
+            var result = loggerGeneral.Object.MessageConObjetoReferenciaReturnBoolean(ref cliente);
+
+            Assert.IsTrue(result);
+            Assert.IsFalse(loggerGeneral.Object.MessageConObjetoReferenciaReturnBoolean(ref clienteNoUsando));
+        }
     }
 }
