@@ -123,6 +123,26 @@ namespace Libreria
 
             Assert.That(loggerGeneralMock.Object.PrioridadLogger, Is.EqualTo(10));
             Assert.That(loggerGeneralMock.Object.TipoLogger, Is.EqualTo("warning"));
+
+            // Callbacks
+            string textoTemp = "Alejandro";
+            loggerGeneralMock.Setup(l => l.LogDatabase(It.IsAny<string>()))
+                .Returns(true)
+                .Callback((string parametro) => textoTemp += parametro);
+
+            loggerGeneralMock.Object.LogDatabase("Ponce");
+
+            Assert.That(textoTemp, Is.EqualTo("AlejandroPonce"));
+
+            int contador = 5;
+            loggerGeneralMock.Setup(l => l.LogDatabase(It.IsAny<string>()))
+                .Returns(true)
+                .Callback(() => contador++);
+
+            loggerGeneralMock.Object.LogDatabase("Ponce");
+
+            Assert.That(contador, Is.EqualTo(6));
         }
+
     }
 }
