@@ -144,5 +144,23 @@ namespace Libreria
             Assert.That(contador, Is.EqualTo(6));
         }
 
+        [Test]
+        public void CuentaBancariaLoggerGeneral_VerifyEjemplo()
+        {
+            var loggerGeneralMock = new Mock<ILoggerGeneral>();
+            CuentaBancaria cuenta = new(loggerGeneralMock.Object);
+            cuenta.Deposito(100);
+            Assert.That(cuenta.GetBalance(), Is.EqualTo(100));
+
+            // Verifica cuantas veces el mock llama al metodo .Message
+            loggerGeneralMock.Verify(v => v.Message(It.IsAny<string>()), Times.Exactly(4));
+
+            loggerGeneralMock.Verify(v => v.Message("Visita alex.com"), Times.AtLeastOnce);
+
+            loggerGeneralMock.VerifySet(v => v.PrioridadLogger = 100, Times.Once);
+
+            loggerGeneralMock.VerifyGet(v => v.PrioridadLogger, Times.Once);
+        }
+
     }
 }

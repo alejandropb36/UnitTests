@@ -15,6 +15,10 @@
         {
             _balance += monto;
             _loggerGeneral.Message($"El monto: {monto} fue depositado correctamente, balance: {_balance}");
+            _loggerGeneral.Message("Es otro texto");
+            _loggerGeneral.Message("Visita alex.com");
+            _loggerGeneral.PrioridadLogger = 100;
+            var prioridadLogger = _loggerGeneral.PrioridadLogger;
             return true;
         }
 
