@@ -1,11 +1,10 @@
-﻿using NUnit.Framework;
+﻿using Xunit;
 
 namespace Libreria
 {
-    [TestFixture]
     public class OperacionXUnitTests
     {
-        [Test]
+        [Fact]
         public void SumaNumeros_InputDosNumeros_GetValorCorrecto()
         {
             // Arrange
@@ -17,26 +16,28 @@ namespace Libreria
             int resultado = operacion.SumarNumeros(a, b);
 
             // Assert
-            Assert.AreEqual(119, resultado);
+            Assert.Equal(119, resultado);
         }
 
-        [Test]
-        [TestCase(7, ExpectedResult = false)]
-        [TestCase(9, ExpectedResult = false)]
-        [TestCase(223, ExpectedResult = false)]
-        public bool IsValorPar_InputNumeroImpar_GetValorFalse(int numero)
+        [Theory]
+        [InlineData(7, false)]
+        [InlineData(9, false)]
+        [InlineData(223, false)]
+        public void IsValorPar_InputNumeroImpar_GetValorFalse(int numero, bool expected)
         {
             // Arrange
             Operacion operacion = new();
 
             // Act
-            return operacion.IsValorPar(numero);
+            var result = operacion.IsValorPar(numero);
+
+            Assert.Equal(expected, result);
         }
 
-        [Test]
-        [TestCase(6)]
-        [TestCase(8)]
-        [TestCase(222)]
+        [Theory]
+        [InlineData(6)]
+        [InlineData(8)]
+        [InlineData(222)]
         public void IsValorPar_InputNumeroPar_GetValorTrue(int numero)
         {
             // Arrange
@@ -46,13 +47,12 @@ namespace Libreria
             bool resultado = operacion.IsValorPar(numero);
 
             // Assert
-            Assert.IsTrue(resultado);
-            Assert.That(resultado, Is.EqualTo(true));
+            Assert.True(resultado);
         }
 
-        [Test]
-        [TestCase(2.2, 1.2)] // 3.4
-        [TestCase(2.23, 1.24)] // 3.47
+        [Theory]
+        [InlineData(2.2, 1.2)] // 3.4
+        [InlineData(2.23, 1.24)] // 3.47
         public void SumarDecimal_InputDosNumeros_GetValorCorrecto(double numero1, double numero2)
         {
             // Arrange
@@ -62,10 +62,10 @@ namespace Libreria
             double resultado = operacion.SumarDecimal(numero1, numero2);
 
             // Assert
-            Assert.AreEqual(3.4, resultado, 0.1);
+            Assert.Equal(3.4, resultado, 0);
         }
 
-        [Test]
+        [Fact]
         public void GetListaNumeroImpares_InputMinimoMaximoIntervalos_ReturnListaImpares()
         {
             // Arrange
@@ -76,15 +76,13 @@ namespace Libreria
             var result = op.GetListaNumeroImpares(5, 10);
 
             // Asserts
-            Assert.That(result, Is.EqualTo(numerosImparesEsperado));
-            Assert.AreEqual(numerosImparesEsperado, result);
-            Assert.That(result, Does.Contain(5));
+            Assert.Equal(numerosImparesEsperado, result);
             Assert.Contains(5, result);
-            Assert.That(result, Is.Not.Empty);
-            Assert.That(result.Count, Is.EqualTo(3));
-            Assert.That(result, Has.No.Member(100));
-            Assert.That(result, Is.Ordered.Ascending);
-            Assert.That(result, Is.Unique);
+            Assert.Contains(5, result);
+            Assert.NotEmpty(result);
+            Assert.Equal(3, result.Count);
+            Assert.DoesNotContain(100, result);
+            Assert.Equal(result.OrderBy(u => u), result);
         }
     }
 }
